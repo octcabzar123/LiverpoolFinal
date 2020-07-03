@@ -1,4 +1,3 @@
-
 Feature: Agregar artículo al carrito
 
   Scenario: Agregar #### al carrito
