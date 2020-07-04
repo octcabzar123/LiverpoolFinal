@@ -11,28 +11,27 @@ import java.util.concurrent.TimeUnit;
 
 public class Hooks {
 
-    public WebDriver driver;
-    public LiverpoolSite liverpoolSite;
+	public WebDriver driver;
+	public LiverpoolSite liverpoolSite;
 
-    public WebDriver getDriver() {
-        return driver;
-    }
+	public WebDriver getDriver() {
+		return driver;
+	}
 
-    public LiverpoolSite getLiverpoolSite() {
-        return liverpoolSite;
-    }
+	public LiverpoolSite getLiverpoolSite() {
+		return liverpoolSite;
+	}
 
-    @Before
-    public void setUp() {
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Utils.SHORT_WAIT, TimeUnit.SECONDS);
-        liverpoolSite = new LiverpoolSite(driver);
+	@Before
+	public void setUp() {
+		driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Utils.SHORT_WAIT, TimeUnit.SECONDS);
+		liverpoolSite = new LiverpoolSite(driver);
+	}
 
-    }
-
-    @After
-    public void tearDown() {
-        driver.quit();
-    }
+	@After
+	public void tearDown() {
+		driver.quit();
+	}
 
 }

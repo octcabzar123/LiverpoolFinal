@@ -6,31 +6,24 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ProductPage {
-    // atributos
+	// atributos
 
+	// WebElement = listaDeArticulos;
 
-    //WebElement = listaDeArticulos;
+	public WebDriver driver;
+	public WebDriverWait wait;
 
+	// Constructor
+	public ProductPage(WebDriver driver) {
+		this.driver = driver;
+	}
 
-    public WebDriver driver;
-    public WebDriverWait wait;
+	public void verificarListaArticulos() {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".o-listing__products")));
+	}
 
-    //Constructor
-    public ProductPage(WebDriver driver) {
+	public void agregarArticulos() {
 
-        this.driver = driver;
-    }
-
-    public void verificarListaArticulos(){
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".o-listing__products")));
-
-    }
-
-    public void agregarArticulos(){
-
-
-    }
-
+	}
 
 }
