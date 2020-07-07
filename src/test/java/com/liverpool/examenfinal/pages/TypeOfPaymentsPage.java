@@ -5,11 +5,12 @@ import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.liverpool.examenfinal.utils.Utils;
 
-public class TypeOfPaymentsPage {
+public class TypeOfPaymentsPage extends BasePage{
 	
 	public WebDriver driver;
 	public WebDriverWait wait;
@@ -21,8 +22,8 @@ public class TypeOfPaymentsPage {
 	WebElement title;
 	
 	public TypeOfPaymentsPage(WebDriver driver){
-		this.driver = driver;
-		this.wait = new WebDriverWait(driver, 15);
+		super(driver);
+		PageFactory.initElements(this.driver, this);
 	}
 	
 	public void verifyPage(){
