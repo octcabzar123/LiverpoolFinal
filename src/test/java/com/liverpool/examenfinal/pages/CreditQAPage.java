@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.liverpool.examenfinal.utils.Locators;
 
@@ -27,6 +28,10 @@ public class CreditQAPage extends BasePage {
 
 	public void verificaCredito() {
 		Assert.assertTrue(logo.isDisplayed());
+	}
+	
+	public void esperaATituloFAQ(){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(Locators.CreditQAPage.SELECTOR_LOGO)));
 	}
 
 	public void buscaPreguntas(String preguntaBuscar) {
