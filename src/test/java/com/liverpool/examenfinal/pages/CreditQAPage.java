@@ -12,12 +12,15 @@ import org.openqa.selenium.support.PageFactory;
 
 public class CreditQAPage extends BasePage {
 
-	@FindBy(css = "[ng-bind='actualCategory.titulo']")
+	private static final String SELECTOR_RESPUESTAS = ".ans[style='display: block;'] ul li";
+	private static final String SELECTOR_LOGO = "[ng-bind='actualCategory.titulo']";
+
+	@FindBy(css = SELECTOR_LOGO)
 	private WebElement logo;
-	
-	@FindBy(css=".ask" )
+
+	@FindBy(css = ".ask")
 	private List<WebElement> preguntas;
-	
+
 	public CreditQAPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(this.driver, this);
@@ -28,12 +31,12 @@ public class CreditQAPage extends BasePage {
 	}
 
 	public void buscaPreguntas(String preguntaBuscar) {
-		for(WebElement pregunta : preguntas){
-			if(pregunta.getText().contains(preguntaBuscar)){
+		for (WebElement pregunta : preguntas) {
+			if (pregunta.getText().contains(preguntaBuscar)) {
 				pregunta.click();
-				List<WebElement> respuestas = driver.findElements(By.cssSelector(".ans[style='display: block;'] ul li"));
+				List<WebElement> respuestas = driver.findElements(By.cssSelector(SELECTOR_RESPUESTAS));
 				Actions ac = new Actions(driver);
-				for(WebElement respuesta: respuestas){
+				for (WebElement respuesta : respuestas) {
 					ac.moveToElement(respuesta).perform();
 					System.out.println(respuesta.getText());
 				}

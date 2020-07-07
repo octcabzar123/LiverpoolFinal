@@ -8,11 +8,13 @@ import org.openqa.selenium.support.PageFactory;
 
 public class HelpPage extends BasePage {
 
-	@FindBy(css = "h2.ayuda")
+	private static final String SELECTOR_AYUDA = "h2.ayuda";
+	private static final String SELECTOR_CREDITO_LIGA = "[href='#/faq/credito/']";
+	@FindBy(css = SELECTOR_AYUDA)
 	private WebElement logo;
 
-	@FindBy(css = "[href='#/faq/credito/']")
-	private WebElement creditoLink;
+	@FindBy(css = SELECTOR_CREDITO_LIGA)
+	private WebElement creditoLiga;
 
 	public HelpPage(WebDriver driver) {
 		super(driver);
@@ -24,6 +26,6 @@ public class HelpPage extends BasePage {
 	}
 
 	public void irACredito() {
-		creditoLink.click();
+		creditoLiga.click();
 	}
 }

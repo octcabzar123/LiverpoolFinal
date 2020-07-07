@@ -8,27 +8,31 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class ResultsPage extends BasePage{
+public class ResultsPage extends BasePage {
+
+	private static final String SELECTOR_PRODUCTO = ".m-figureCard__figure.card.m-plp-product-card.m-card";
+	private static final String SELECTOR_MOSAICO = ".o-listing__products";
+	private static final String SELECTOR_BOLSA = ".a-header__bag";
+
+	@FindBy(css = SELECTOR_PRODUCTO)
+	WebElement primero;
+
+	@FindBy(css = SELECTOR_MOSAICO)
+	WebElement mosaico;
+
+	@FindBy(css = SELECTOR_BOLSA)
+	private WebElement bolsa;
 
 	public ResultsPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(this.driver, this);
 	}
-	
-	@FindBy(css = ".m-figureCard__figure.card.m-plp-product-card.m-card")
-	WebElement primero;
-	
-	@FindBy(css=".o-listing__products")
-	WebElement mosaico;
-	
-	@FindBy(css= ".a-header__bag")
-	private WebElement bolsa;
-	
+
 	public void verificarListaArticulos() {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".o-listing__products")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(SELECTOR_MOSAICO)));
 	}
 
-	public void entrarArticulo(){
+	public void entrarArticulo() {
 		primero.click();
 		Actions ac = new Actions(driver);
 		ac.moveToElement(bolsa).perform();

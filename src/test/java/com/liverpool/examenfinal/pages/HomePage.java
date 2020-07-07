@@ -10,18 +10,23 @@ import com.liverpool.examenfinal.utils.Utils;
 
 public class HomePage extends BasePage {
 
-	@FindBy(css = ".a-header__logo")
+	private static final String SELECTOR_LOGO = ".a-header__logo";
+	private static final String SELECTOR_ICONO_BUSQUEDA = ".icon-zoom";
+	private static final String SELECTOR_CAMPO_BUSQUEDA = ".form-control";
+	private static final String SELECTOR_AYUDA_LIGA = ".a-header__strongLink[href='https://assetspwa.liverpool.com.mx/ayuda/#/']";
+
+	@FindBy(css = SELECTOR_LOGO)
 	private WebElement logoLiverpool;
-	
-	@FindBy(css = ".icon-zoom")
+
+	@FindBy(css = SELECTOR_ICONO_BUSQUEDA)
 	private WebElement iconoBusqueda;
-	
-	@FindBy(css = ".form-control")
+
+	@FindBy(css = SELECTOR_CAMPO_BUSQUEDA)
 	private WebElement campoBusqueda;
-	
-	@FindBy(css =".a-header__strongLink[href='https://assetspwa.liverpool.com.mx/ayuda/#/']")
-	private WebElement linkAyuda;
-	
+
+	@FindBy(css = SELECTOR_AYUDA_LIGA)
+	private WebElement ayudaLiga;
+
 	public HomePage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
@@ -29,13 +34,13 @@ public class HomePage extends BasePage {
 
 	public void navegarSitio() {
 		driver.manage().window().maximize();
-	    driver.get(Utils.URL);
+		driver.get(Utils.URL);
 	}
 
 	public void verificarInicio() {
 		Assert.assertTrue(logoLiverpool.isDisplayed() && campoBusqueda.isDisplayed() && iconoBusqueda.isDisplayed());
 	}
-	
+
 	public ResultsPage buscarArticulo(String articulo) {
 		campoBusqueda.sendKeys(articulo);
 		iconoBusqueda.click();
@@ -43,6 +48,6 @@ public class HomePage extends BasePage {
 	}
 
 	public void irAAyuda() {
-		linkAyuda.click();
+		ayudaLiga.click();
 	}
 }

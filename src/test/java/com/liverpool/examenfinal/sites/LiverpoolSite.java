@@ -25,8 +25,8 @@ public class LiverpoolSite {
 		this.driver = driver;
 		this.wait = wait;
 	}
-	
-	public WebDriverWait getWait(){
+
+	public WebDriverWait getWait() {
 		return this.wait;
 	}
 
