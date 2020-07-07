@@ -3,9 +3,6 @@ package com.liverpool.examenfinal.steps;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
 import com.liverpool.examenfinal.hooks.Hooks;
 import com.liverpool.examenfinal.pages.CartPage;
 import com.liverpool.examenfinal.pages.HomePage;
@@ -20,11 +17,6 @@ import cucumber.api.java.en.When;
 
 public class CarritoStepDefs {
 
-	private static final String SELECTOR_INICIO_LOGO = ".a-header__logo";
-	private static final String SELECTOR_PRODUCTOS = ".o-myBag--giftTable";
-	private static final String SELECTOR_RESULTADOS = ".m-figureCard__figure.card.m-plp-product-card.m-card";
-	private static final String SELECTOR_BOLSA = ".a-header__bag";
-
 	public LiverpoolSite liverpoolSite;
 	private List<Producto> productos;
 
@@ -37,15 +29,14 @@ public class CarritoStepDefs {
 	public void entro_a_la_pgina_tienda_en_lnea_de_liverpool() {
 		HomePage home = this.liverpoolSite.getHome();
 		home.navegarSitio();
-		liverpoolSite.getWait()
-				.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(SELECTOR_INICIO_LOGO)));
+		home.esperaALogo();
 		home.verificarInicio();
 	}
 
 	@And("^Verifico la informacion$")
 	public void verifico_la_informacion() {
-		liverpoolSite.getWait()
-				.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(SELECTOR_PRODUCTOS)));
+		HomePage home = this.liverpoolSite.getHome();
+		home.esperaProductos();
 		CartPage carrito = liverpoolSite.getCarrito();
 		carrito.verificaCarrito();
 		carrito.validaProductos(productos);
@@ -66,11 +57,10 @@ public class CarritoStepDefs {
 	public void busco_segundo_en_pgina_de_producto(String segundo) {
 		ProductPage producto = this.liverpoolSite.getProduct();
 		ResultsPage results = producto.buscarArticulo(segundo);
+		results.esperaResultados();
 		results.verificarListaArticulos();
-		liverpoolSite.getWait()
-				.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(SELECTOR_RESULTADOS)));
 		results.entrarArticulo();
-		liverpoolSite.getWait().until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(SELECTOR_BOLSA)));
+		results.esperaBolsa();
 		ProductPage producto2 = this.liverpoolSite.getProduct();
 		productos.add(producto2.verificarProducto());
 		producto2.agregarArticulo();

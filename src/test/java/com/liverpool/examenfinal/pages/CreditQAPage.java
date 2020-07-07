@@ -10,15 +10,14 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.liverpool.examenfinal.utils.Locators;
+
 public class CreditQAPage extends BasePage {
 
-	private static final String SELECTOR_RESPUESTAS = ".ans[style='display: block;'] ul li";
-	private static final String SELECTOR_LOGO = "[ng-bind='actualCategory.titulo']";
-
-	@FindBy(css = SELECTOR_LOGO)
+	@FindBy(css = Locators.CreditQAPage.SELECTOR_LOGO)
 	private WebElement logo;
 
-	@FindBy(css = ".ask")
+	@FindBy(css = Locators.CreditQAPage.SELECTOR_ASK)
 	private List<WebElement> preguntas;
 
 	public CreditQAPage(WebDriver driver) {
@@ -34,7 +33,7 @@ public class CreditQAPage extends BasePage {
 		for (WebElement pregunta : preguntas) {
 			if (pregunta.getText().contains(preguntaBuscar)) {
 				pregunta.click();
-				List<WebElement> respuestas = driver.findElements(By.cssSelector(SELECTOR_RESPUESTAS));
+				List<WebElement> respuestas = driver.findElements(By.cssSelector(Locators.CreditQAPage.SELECTOR_RESPUESTAS));
 				Actions ac = new Actions(driver);
 				for (WebElement respuesta : respuestas) {
 					ac.moveToElement(respuesta).perform();

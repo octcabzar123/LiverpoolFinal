@@ -6,14 +6,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.liverpool.examenfinal.utils.Locators;
+
 public class HelpPage extends BasePage {
 
-	private static final String SELECTOR_AYUDA = "h2.ayuda";
-	private static final String SELECTOR_CREDITO_LIGA = "[href='#/faq/credito/']";
-	@FindBy(css = SELECTOR_AYUDA)
+	@FindBy(css = Locators.HelpPage.SELECTOR_AYUDA)
 	private WebElement logo;
 
-	@FindBy(css = SELECTOR_CREDITO_LIGA)
+	@FindBy(css = Locators.HelpPage.SELECTOR_CREDITO_LIGA)
 	private WebElement creditoLiga;
 
 	public HelpPage(WebDriver driver) {

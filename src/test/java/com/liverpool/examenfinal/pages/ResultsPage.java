@@ -8,19 +8,17 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import com.liverpool.examenfinal.utils.Locators;
+
 public class ResultsPage extends BasePage {
 
-	private static final String SELECTOR_PRODUCTO = ".m-figureCard__figure.card.m-plp-product-card.m-card";
-	private static final String SELECTOR_MOSAICO = ".o-listing__products";
-	private static final String SELECTOR_BOLSA = ".a-header__bag";
-
-	@FindBy(css = SELECTOR_PRODUCTO)
+	@FindBy(css = Locators.ResultsPage.SELECTOR_PRODUCTO)
 	WebElement primero;
 
-	@FindBy(css = SELECTOR_MOSAICO)
+	@FindBy(css = Locators.ResultsPage.SELECTOR_MOSAICO)
 	WebElement mosaico;
 
-	@FindBy(css = SELECTOR_BOLSA)
+	@FindBy(css = Locators.ResultsPage.SELECTOR_BOLSA)
 	private WebElement bolsa;
 
 	public ResultsPage(WebDriver driver) {
@@ -29,12 +27,24 @@ public class ResultsPage extends BasePage {
 	}
 
 	public void verificarListaArticulos() {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(SELECTOR_MOSAICO)));
+		wait.until(
+				ExpectedConditions.visibilityOfElementLocated(By.cssSelector(Locators.ResultsPage.SELECTOR_MOSAICO)));
 	}
 
 	public void entrarArticulo() {
 		primero.click();
 		Actions ac = new Actions(driver);
+		esperaBolsa();
 		ac.moveToElement(bolsa).perform();
+	}
+
+	public void esperaResultados() {
+		wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.cssSelector(Locators.ResultsPage.SELECTOR_RESULTADOS)));
+	}
+
+	public void esperaBolsa() {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(Locators.ResultsPage.SELECTOR_BOLSA)));
+
 	}
 }
