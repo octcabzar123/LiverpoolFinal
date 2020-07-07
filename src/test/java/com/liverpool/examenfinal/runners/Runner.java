@@ -7,7 +7,7 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = { 
-		"src/test/resources/features/carrito/carrito.feature",
+//		"src/test/resources/features/carrito/carrito.feature",
 		"src/test/resources/features/preguntas/preguntas.feature" }, 
 		strict = false, 
 		plugin = { "pretty",

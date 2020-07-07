@@ -11,14 +11,17 @@ import com.liverpool.examenfinal.utils.Utils;
 public class HomePage extends BasePage {
 
 	@FindBy(css = ".a-header__logo")
-	WebElement logoLiverpool;
+	private WebElement logoLiverpool;
 	
 	@FindBy(css = ".icon-zoom")
-	WebElement iconoBusqueda;
+	private WebElement iconoBusqueda;
 	
 	@FindBy(css = ".form-control")
-	public WebElement campoBusqueda;
-
+	private WebElement campoBusqueda;
+	
+	@FindBy(css =".a-header__strongLink[href='https://assetspwa.liverpool.com.mx/ayuda/#/']")
+	private WebElement linkAyuda;
+	
 	public HomePage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
@@ -37,5 +40,9 @@ public class HomePage extends BasePage {
 		campoBusqueda.sendKeys(articulo);
 		iconoBusqueda.click();
 		return new ResultsPage(driver);
+	}
+
+	public void irAAyuda() {
+		linkAyuda.click();
 	}
 }

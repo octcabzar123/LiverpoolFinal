@@ -9,7 +9,6 @@ import com.liverpool.examenfinal.pages.HelpPage;
 import com.liverpool.examenfinal.pages.HomePage;
 import com.liverpool.examenfinal.pages.ProductPage;
 import com.liverpool.examenfinal.pages.ResultsPage;
-import com.liverpool.examenfinal.pages.TypeOfPaymentsPage;
 
 public class LiverpoolSite {
 
@@ -20,7 +19,6 @@ public class LiverpoolSite {
 	private HelpPage help;
 	private ProductPage product;
 	private ResultsPage results;
-	private TypeOfPaymentsPage types;
 	private CartPage carrito;
 
 	public LiverpoolSite(WebDriver driver, WebDriverWait wait) {
@@ -58,13 +56,6 @@ public class LiverpoolSite {
 			results = new ResultsPage(driver);
 		}
 		return results;
-	}
-
-	public TypeOfPaymentsPage getTypes() {
-		if (types == null) {
-			types = new TypeOfPaymentsPage(driver);
-		}
-		return types;
 	}
 
 	public WebDriver getDriver() {
