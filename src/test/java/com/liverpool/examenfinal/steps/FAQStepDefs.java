@@ -34,12 +34,14 @@ public class FAQStepDefs {
 	public void veo_los_tipos_de_pago() {
 		CreditQAPage preguntas = liverpoolSite.getCredit();
 		preguntas.verificaCredito();
+		liverpoolSite.getWait().until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[ng-bind='actualCategory.titulo']")));
 		preguntas.buscaPreguntas("formas de pago");	
 	}
 
 	@And("^Voy a la sección de credito$")
 	public void voy_a_la_seccin_de_credito() {
 		HelpPage ayuda = liverpoolSite.getHelp();
+		liverpoolSite.getWait().until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h2.ayuda")));
 		ayuda.verificaAyuda();
 		ayuda.irACredito();
 	}

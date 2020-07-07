@@ -38,7 +38,7 @@ public class CarritoStepDefs {
 
 	@And("^Verifico la informacion$")
 	public void verifico_la_informacion() {
-		liverpoolSite.getWait().until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".t-myBag__productList")));
+		liverpoolSite.getWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(".o-myBag--giftTable")));
 		CartPage carrito = liverpoolSite.getCarrito();
 		carrito.verificaCarrito();
 		carrito.validaProductos(productos);
@@ -60,6 +60,7 @@ public class CarritoStepDefs {
     	ProductPage producto = this.liverpoolSite.getProduct();
     	ResultsPage results = producto.buscarArticulo(segundo);
     	results.verificarListaArticulos();
+    	liverpoolSite.getWait().until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".m-figureCard__figure.card.m-plp-product-card.m-card")));
 		results.entrarArticulo();
 		liverpoolSite.getWait().until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".a-header__bag")));
 		ProductPage producto2 = this.liverpoolSite.getProduct();

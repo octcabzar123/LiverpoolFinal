@@ -7,5 +7,5 @@ Feature: Agregar artículo al carrito
     And Verifico la informacion
 
     Examples: 
-      | primero | segundo   |
-      | maletas | extractor |
+      | primero      | segundo   |
+      | refrigerador | extractor |

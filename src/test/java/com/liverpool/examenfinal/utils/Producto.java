@@ -6,8 +6,8 @@ public class Producto {
 	private String nombre;
 
 	public Producto(String precio, String nombre) {
-		this.setNombre(nombre);
-		this.precio = precio;
+		this.nombre = nombre.toLowerCase();
+		this.precio = precio.toLowerCase();
 	}
 
 	public String getPrecio() {

@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -31,7 +32,9 @@ public class CreditQAPage extends BasePage {
 			if(pregunta.getText().contains(preguntaBuscar)){
 				pregunta.click();
 				List<WebElement> respuestas = driver.findElements(By.cssSelector(".ans[style='display: block;'] ul li"));
+				Actions ac = new Actions(driver);
 				for(WebElement respuesta: respuestas){
+					ac.moveToElement(respuesta).perform();
 					System.out.println(respuesta.getText());
 				}
 			}
