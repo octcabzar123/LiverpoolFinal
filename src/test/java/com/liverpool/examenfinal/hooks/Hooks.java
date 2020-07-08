@@ -32,7 +32,7 @@ public class Hooks {
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(Utils.SHORT_WAIT, TimeUnit.SECONDS);
 		wait = new WebDriverWait(driver,Utils.LONG_WAIT);
-		liverpoolSite = new LiverpoolSite(driver, wait);
+		liverpoolSite = new LiverpoolSite(driver);
 	}
 
 	@After

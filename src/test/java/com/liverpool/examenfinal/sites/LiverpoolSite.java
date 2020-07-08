@@ -1,7 +1,6 @@
 package com.liverpool.examenfinal.sites;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.liverpool.examenfinal.pages.CartPage;
 import com.liverpool.examenfinal.pages.CreditQAPage;
@@ -13,7 +12,6 @@ import com.liverpool.examenfinal.pages.ResultsPage;
 public class LiverpoolSite {
 
 	private final WebDriver driver;
-	private final WebDriverWait wait;
 	private HomePage home;
 	private CreditQAPage credit;
 	private HelpPage help;
@@ -21,13 +19,8 @@ public class LiverpoolSite {
 	private ResultsPage results;
 	private CartPage carrito;
 
-	public LiverpoolSite(WebDriver driver, WebDriverWait wait) {
+	public LiverpoolSite(WebDriver driver) {
 		this.driver = driver;
-		this.wait = wait;
-	}
-	
-	public WebDriverWait getWait(){
-		return this.wait;
 	}
 
 	public HomePage getHome() {

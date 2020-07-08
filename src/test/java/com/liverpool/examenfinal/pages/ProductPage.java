@@ -8,26 +8,27 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import com.liverpool.examenfinal.utils.Locators;
 import com.liverpool.examenfinal.utils.Producto;
 
 public class ProductPage extends BasePage {
 
-	@FindBy(css = ".o-product__description .a-product__information--title")
+	@FindBy(css = Locators.ProductPage.SELECTOR_NOMBRE)
 	private WebElement nombre;
 
-	@FindBy(css = ".o-product__description .a-product__paragraphDiscountPrice")
+	@FindBy(css = Locators.ProductPage.SELECTOR_PRECIO)
 	private WebElement precio;
 
-	@FindBy(xpath = "//*[@id='opc_pdp_addCartButton']")
+	@FindBy(xpath = Locators.ProductPage.XPATH_BOTON_AGREGAR)
 	private WebElement botonAgregar;
 
-	@FindBy(css= ".form-control")
+	@FindBy(css = Locators.ProductPage.SELECTOR_CAMPO_BUSQUEDA)
 	private WebElement campoBusqueda;
-	
-	@FindBy(css= ".a-header__bag")
+
+	@FindBy(css = Locators.ProductPage.SELECTOR_BOLSA)
 	private WebElement bolsa;
-	
-	@FindBy(css = ".icon-zoom")
+
+	@FindBy(css = Locators.ProductPage.SELECTOR_ICONO_BUSQUEDA)
 	WebElement iconoBusqueda;
 
 	// Constructor
@@ -39,8 +40,9 @@ public class ProductPage extends BasePage {
 	public void agregarArticulo() {
 		botonAgregar.click();
 		Boolean statusFlag = true;
-		while(statusFlag){
-			statusFlag = !wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("[role='status']")));
+		while (statusFlag) {
+			statusFlag = !wait.until(ExpectedConditions
+					.invisibilityOfElementLocated(By.cssSelector(Locators.ProductPage.SELECTOR_MENSAJE_EXITO)));
 		}
 	}
 
@@ -58,7 +60,7 @@ public class ProductPage extends BasePage {
 	}
 
 	public void veABolsa() {
-		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".a-header__bag")));
+		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(Locators.ProductPage.SELECTOR_BOLSA)));
 		bolsa.click();
 	}
 }

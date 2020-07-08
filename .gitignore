@@ -1,3 +1,6 @@
 .idea/
 /target/
 LiverpoolFinal.iml
+.classpath
+.project
+.settings/

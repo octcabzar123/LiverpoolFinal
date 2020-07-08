@@ -9,15 +9,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import com.liverpool.examenfinal.utils.Locators;
 
 public class CreditQAPage extends BasePage {
 
-	@FindBy(css = "[ng-bind='actualCategory.titulo']")
+	@FindBy(css = Locators.CreditQAPage.SELECTOR_LOGO)
 	private WebElement logo;
-	
-	@FindBy(css=".ask" )
+
+	@FindBy(css = Locators.CreditQAPage.SELECTOR_ASK)
 	private List<WebElement> preguntas;
-	
+
 	public CreditQAPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(this.driver, this);
@@ -26,14 +29,18 @@ public class CreditQAPage extends BasePage {
 	public void verificaCredito() {
 		Assert.assertTrue(logo.isDisplayed());
 	}
+	
+	public void esperaATituloFAQ(){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(Locators.CreditQAPage.SELECTOR_LOGO)));
+	}
 
 	public void buscaPreguntas(String preguntaBuscar) {
-		for(WebElement pregunta : preguntas){
-			if(pregunta.getText().contains(preguntaBuscar)){
+		for (WebElement pregunta : preguntas) {
+			if (pregunta.getText().contains(preguntaBuscar)) {
 				pregunta.click();
-				List<WebElement> respuestas = driver.findElements(By.cssSelector(".ans[style='display: block;'] ul li"));
+				List<WebElement> respuestas = driver.findElements(By.cssSelector(Locators.CreditQAPage.SELECTOR_RESPUESTAS));
 				Actions ac = new Actions(driver);
-				for(WebElement respuesta: respuestas){
+				for (WebElement respuesta : respuestas) {
 					ac.moveToElement(respuesta).perform();
 					System.out.println(respuesta.getText());
 				}

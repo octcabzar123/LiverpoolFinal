@@ -6,6 +6,5 @@ public class Utils {
     public static final long LONG_WAIT = 30;
 
     public static final String URL = "https://www.liverpool.com.mx/tienda/home";
-    public static final String CREDIT = "Crédito";
 
 }

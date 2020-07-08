@@ -1,27 +1,31 @@
 package com.liverpool.examenfinal.pages;
 
 import org.junit.Assert;
+import com.liverpool.examenfinal.utils.Locators;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.liverpool.examenfinal.utils.Utils;
 
 public class HomePage extends BasePage {
 
-	@FindBy(css = ".a-header__logo")
+	@FindBy(css = Locators.HomePage.SELECTOR_LOGO)
 	private WebElement logoLiverpool;
-	
-	@FindBy(css = ".icon-zoom")
+
+	@FindBy(css = Locators.HomePage.SELECTOR_ICONO_BUSQUEDA)
 	private WebElement iconoBusqueda;
-	
-	@FindBy(css = ".form-control")
+
+	@FindBy(css = Locators.HomePage.SELECTOR_CAMPO_BUSQUEDA)
 	private WebElement campoBusqueda;
-	
-	@FindBy(css =".a-header__strongLink[href='https://assetspwa.liverpool.com.mx/ayuda/#/']")
-	private WebElement linkAyuda;
-	
+
+	@FindBy(css = Locators.HomePage.SELECTOR_AYUDA_LIGA)
+	private WebElement ayudaLiga;
+
 	public HomePage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
@@ -29,13 +33,17 @@ public class HomePage extends BasePage {
 
 	public void navegarSitio() {
 		driver.manage().window().maximize();
-	    driver.get(Utils.URL);
+		driver.get(Utils.URL);
+	}
+
+	public boolean verificarPagina() {
+		return logoLiverpool.isDisplayed() && campoBusqueda.isDisplayed() && iconoBusqueda.isDisplayed();
 	}
 
 	public void verificarInicio() {
 		Assert.assertTrue(logoLiverpool.isDisplayed() && campoBusqueda.isDisplayed() && iconoBusqueda.isDisplayed());
 	}
-	
+
 	public ResultsPage buscarArticulo(String articulo) {
 		campoBusqueda.sendKeys(articulo);
 		iconoBusqueda.click();
@@ -43,6 +51,15 @@ public class HomePage extends BasePage {
 	}
 
 	public void irAAyuda() {
-		linkAyuda.click();
+		ayudaLiga.click();
+	}
+
+	public void esperaALogo() {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(Locators.HomePage.SELECTOR_LOGO)));
+	}
+
+	public void esperaProductos() {
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(Locators.HomePage.SELECTOR_PRODUCTOS)));
+		
 	}
 }
